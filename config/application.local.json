@@ -5,7 +5,7 @@
   "githubAuthURL": "https://github.com/login/oauth/authorize",
   "githubAuthToken": "https://github.com/login/oauth/access_token",
   "cookieDomain": "localhost",
-  "defaultRedirect:": "http://localhost:3060/",
+  "defaultRedirect:": "http://localhost:3070/",
   "domain": "https://schedule.frontender.info/",
   "collectionName": "schedule",
   "mongoDBHost": "localhost",

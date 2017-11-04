@@ -40,7 +40,7 @@ const jwtOptions = {
   },
 };
 
-const PORT = process.env.PORT || 3050;
+const PORT = process.env.PORT || 3070;
 const server = restify.createServer({ name, version });
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
