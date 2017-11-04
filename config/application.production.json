@@ -5,12 +5,10 @@
   "githubAuthURL": "https://github.com/login/oauth/authorize",
   "githubAuthToken": "https://github.com/login/oauth/access_token",
   "cookieDomain": ".frontender.info",
-  "defaultRedirect:": "https://user.frontender.info/",
-  "teams": {
-    "author": 314470,
-    "developer": 2355618,
-    "editor": 314469,
-    "staffer": 2355624,
-    "translator": 314467
-  }
+  "defaultRedirect:": "https://schedule.frontender.info/",
+  "domain": "https://schedule.frontender.info/",
+  "collectionName": "schedule",
+  "mongoDBHost": "localhost",
+  "mongoDBPort": 27017,
+  "mongoDBName": "fm"
 }

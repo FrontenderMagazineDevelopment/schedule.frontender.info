@@ -1,4 +1,4 @@
-# Envirnment variables you should add
+# Environment variables you should add
 
 * SSH_IP — production server IP
 * SSH_USER - ssh user
