@@ -4,7 +4,7 @@ export default {
   body: joi
     .object()
     .keys({
-      article_id: joi.number(),
+      article_id: joi.string(),
       from: joi.date(),
       to: joi.date(),
       responsible: joi.array().items(joi.string()),
