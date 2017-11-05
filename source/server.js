@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import mongoose from 'mongoose';
 import restify from 'restify';
 import jwt from 'restify-jwt';
+import errors from 'restify-errors';
 import cookieParser from 'restify-cookies';
 import dotenv from 'dotenv';
 import fs from 'fs';
@@ -28,7 +29,8 @@ const { name, version } = require('../package.json');
 
 const jwtOptions = {
   secret: process.env.JWT_SECRET,
-  getToken: req => {
+  // credentialsRequired: false,
+  getToken: (req) => {
     if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
       return req.headers.authorization.split(' ')[1];
     } else if (req.query && req.query.token) {
@@ -36,7 +38,8 @@ const jwtOptions = {
     } else if (req.cookies && req.cookies.token) {
       return req.cookies.token;
     }
-    return null;
+    // throw new errors.UnauthorizedError('no credentials');
+    return new errors.UnauthorizedError('no credentials');
   },
 };
 
@@ -126,6 +129,7 @@ server.post(
   },
   jwt(jwtOptions),
   async (req, res, next) => {
+    
     if (req.user.scope.isTeam === false) {
       res.status(401);
       res.end();

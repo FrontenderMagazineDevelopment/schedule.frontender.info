@@ -42,6 +42,7 @@
     "request-promise": "^4.2.1",
     "restify": "^5.2.0",
     "restify-cookies": "^0.2.2",
+    "restify-errors": "^5.0.0",
     "restify-joi-middleware": "^3.0.4",
     "restify-jwt": "^0.4.0",
     "restify-session": "^1.1.1",
