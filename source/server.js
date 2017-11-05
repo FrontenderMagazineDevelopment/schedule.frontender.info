@@ -132,7 +132,7 @@ server.post(
       return next();
     }
 
-    const user = new Event(req.params);
+    const user = new Event(req.body);
     let result;
     try {
       result = await user.save();
