@@ -254,7 +254,7 @@ server.patch(
 server.get('/:id', async (req, res, next) => {
   let result;
   try {
-    result = await Event.findById(req.params.id);
+    result = await Event.findById(mongoose.Types.ObjectId(req.params.id));
   } catch (error) {
     res.status(404);
     res.end();
