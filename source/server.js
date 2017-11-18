@@ -65,6 +65,10 @@ server.get('/', async (req, res, next) => {
 
   const query = {};
 
+  if (req.query.state !== undefined) {
+    query.state = req.query.state;
+  }
+
   if (req.query.from !== undefined) {
     query.from = req.query.from;
   }
