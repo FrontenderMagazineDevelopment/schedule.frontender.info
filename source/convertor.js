@@ -36,16 +36,15 @@ const freezed = articles.filter((article)=>(article.ready === false)&&(article.r
 console.log('pub:', published.length);
 published.forEach(async (article)=>{
   let repo;
+
   if (Array.isArray(article.reponame)) {
     repo = article.reponame[article.reponame.length-1].split('?')[0];
   } else {
     repo = article.reponame;
   }
+
   const result = await Article.find({"$or": [{"translations.reponame": repo}, {reponame: repo}]});
-  // console.log('reponame: ', repo);
-  if (result.length === 0 ) {
-    // console.log('fuck: ', article);
-  }
+  console.log('reponame: ', repo);
   
   
 if (result.length > 0) {

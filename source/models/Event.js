@@ -1,7 +1,10 @@
 import mongoose from 'mongoose';
 
 const EventSchema = new mongoose.Schema({
-  article_id: { type: String, required: true },
+  article_id: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'article',
+  },
   from: { type: Date, required: true },
   to: { type: Date },
   responsible: { type: Array },
