@@ -39,7 +39,7 @@ const jwtOptions = {
       return req.cookies.token;
     }
     // throw new errors.UnauthorizedError('no credentials');
-    return new errors.UnauthorizedError('no credentials');
+    return null;
   },
 };
 
@@ -52,6 +52,7 @@ server.use(restify.plugins.gzipResponse());
 server.use(cookieParser.parse);
 server.use(validator());
 
+
 server.pre((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,Authorization');
@@ -60,18 +61,7 @@ server.pre((req, res, next) => {
   return next();
 });
 
-server.get('/', jwt(jwtOptions), async (req, res, next) => {
-  if (req.user.scope.isTeam === false) {
-    res.status(401);
-    res.end();
-    return next();
-  }
-
-  if (req.url === '/favicon.ico') {
-    res.state(204);
-    res.end();
-    return next();
-  }
+server.get('/', async (req, res, next) => {
 
   const query = {};
 
@@ -94,16 +84,7 @@ server.get('/', jwt(jwtOptions), async (req, res, next) => {
   const page = parseInt(req.query.page, 10) || 1;
   const perPage = parseInt(req.query.per_page, 10) || 20;
   const total = await Event.find(query).count();
-  
   const pagesCount = Math.ceil(total / perPage);
-
-  if (perPage === 0) {
-    const result = await Event.find(query);
-    res.status(200);
-    res.send(result);
-    res.end();
-    return next();
-  }
 
   res.setHeader('X-Pagination-Current-Page', page);
   res.setHeader('X-Pagination-Per-Page', perPage);
@@ -121,14 +102,14 @@ server.get('/', jwt(jwtOptions), async (req, res, next) => {
   }
   links.push(`<${config.domain}?page=${pagesCount}>; rel=last`);
   res.setHeader('Link', links.join(', '));
-  
+
   const result = await Event.find(query)
     .skip((page - 1) * perPage)
     .limit(perPage);
   res.status(200);
   res.send(result);
   res.end();
-  return next();
+  return true;
 });
 
 server.post(
@@ -266,19 +247,7 @@ server.patch(
  * @type {String} id - event id
  * @return {Object} - event
  */
-server.get('/:id', jwt(jwtOptions), async (req, res, next) => {
-  if (req.params.id === 'favicon.ico') {
-    res.status(204);
-    res.end();
-    return next();
-  }
-
-  if (req.user.scope.isTeam === false) {
-    res.status(401);
-    res.end();
-    return next();
-  }
-
+server.get('/:id', async (req, res, next) => {
   let result;
   try {
     result = await Event.findById(req.params.id);
