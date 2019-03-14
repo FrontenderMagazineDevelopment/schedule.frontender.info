@@ -5,7 +5,7 @@ gh-cache
 !.gitignore
 !.bowerrc
 !.travis.yml
-
+.env
 .idea
 .DS_Store
 .DS_Store?
