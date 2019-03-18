@@ -5,10 +5,12 @@
   "description": "Schedule Frontender Magazine",
   "keywords": [],
   "author": "Anton Nemtsev <thesilentimp@gmail.com>",
-  "contributors": [{
-    "name": "Anton Nemtsev",
-    "email": "thesilentimp@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "Anton Nemtsev",
+      "email": "thesilentimp@gmail.com"
+    }
+  ],
   "license": "CC-BY-4.0",
   "main": "build/server.js",
   "dependencies": {
