@@ -1,4 +1,4 @@
-import Event from '../../models/Event';
+import { Event } from '@frontender-magazine/models';
 
 export async function patch(req, res) {
   if (req.user.scope.isTeam === false) {

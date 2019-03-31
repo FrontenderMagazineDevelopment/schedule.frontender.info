@@ -1,4 +1,4 @@
-import Event from '../../models/Event';
+import { Event } from '@frontender-magazine/models';
 
 export async function get(req, res) {
   const { SCHEDULE_DOMAIN } = process.env;

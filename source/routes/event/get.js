@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Event from '../../models/Event';
+import { Event } from '@frontender-magazine/models';
 
 export async function get(req, res) {
   let result;
